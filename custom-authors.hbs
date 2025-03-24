@@ -31,14 +31,11 @@
 				  	<a class="it-authors-item" title="{{name}}" href='{{ url }}'>
 				    	<figure class="it-avatar-wrapper">
 				      	{{#if profile_image}}
-						    	<img class="lazy" 
-						           data-src="{{profile_image}}"
-						           alt="{{title}}"
-						       />
-						      {{else}}
-						      	{{> "icons/user"}}
-						      {{/if}}
-						   </figure>
+							<img src="{{profile_image}}" alt="{{title}}" />
+						{{else}}
+							{{> "icons/user"}}
+						{{/if}}
+						</figure>
 				       <h2 class="it-authors-title">{{ name }}</h2>
 				       {{#if bio}}
 				       		<p>{{bio}}</p>

@@ -7,12 +7,12 @@
             <header class="it-header it-canvas">
                 {{#if cover_image}}
     	            <figure class="it-feature-image-wrapper">
-    	                 {{>image image_url="cover_image" picture_type="author-cover" card=false}}
+    	                 {{>image picture_type="author-cover" card=false from_author=true}}
     	            </figure>
     	        {{/if}}
     	        <div class="it-author-image">
     	            {{#if profile_image}}
-                        <img src="{{profile_image}}" alt="{{name}}" />
+                        <img class="it-avatar-wrapper" style="max-width: fit-content;" src="{{profile_image}}" alt="{{name}}" />
                     {{else}}
                         {{> "icons/user"}} {{!-- partials/icons/user.hbs --}}
                     {{/if}}

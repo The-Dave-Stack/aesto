@@ -1,56 +1,66 @@
- <picture class="it-card-picture">
-              <source 
-                data-srcset="
-                {{img_url feature_image size="xxs" format="avif"}} 30w,
-                {{img_url feature_image size="xs" format="avif"}} 100w,
-                {{img_url feature_image size="s" format="avif"}} 300w,
-                {{img_url feature_image size="m" format="avif"}} 600w,
-                {{img_url feature_image size="l" format="avif"}} 1200w,
-                {{img_url feature_image size="xl" format="avif"}} 2000w"
-                {{#if card}}
-                sizes="(min-width: 800px) 100vw, 700px"
-                {{else}}
-                sizes="(min-width: 1200px) 1200px, 100vw" 
-                {{/if}}
-                type="image/avif"
-              >
-              <source 
-                data-srcset="
-                {{img_url feature_image size="xxs" format="webp"}} 30w,
-                {{img_url feature_image size="xs" format="webp"}} 100w,
-                {{img_url feature_image size="s" format="webp"}} 300w,
-                {{img_url feature_image size="m" format="webp"}} 600w,
-                {{img_url feature_image size="l" format="webp"}} 1200w,
-                {{img_url feature_image size="xl" format="webp"}} 2000w"
-                {{#if card}}
-                sizes="(min-width: 800px) 100vw, 700px"
-                {{else}}
-                sizes="(min-width: 1200px) 1200px, 100vw" 
-                {{/if}}
-                type="image/webp"
-
-              >
-              <img
-                data-srcset="
-                {{img_url feature_image size="xxs"}} 30w,
-                {{img_url feature_image size="xs"}} 100w,
-                {{img_url feature_image size="s"}} 300w,
-                {{img_url feature_image size="m"}} 600w,
-                {{img_url feature_image size="l"}} 1200w,
-                {{img_url feature_image size="xl"}} 2000w"
-                {{#if card}}
-                sizes="(min-width: 800px) 100vw, 700px"
-                {{else}}
-                sizes="(min-width: 1200px) 1200px, 100vw" 
-                {{/if}}
-                {{#if card}}
-                data-src="{{img_url feature_image size="m"}}"
-                {{else if popular_tag}}
-                data-src="{{img_url feature_image size="s"}}"
-                {{else}}
-                data-src="{{img_url feature_image size="l"}}"
-                {{/if}} 
-                alt="{{#match picture_type "post"}}{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}{{/match}}{{#match picture_type "tag"}}{{name}}{{/match}}"
-                class="{{#if card}}it-card-image{{else}}it-feature-image{{/if}} lazy"
-              >
-            </picture>
+<picture class="it-card-picture">
+    <source
+        data-srcset="
+        {{#if from_author}}
+            {{img_url cover_image size="xxs" format="avif"}} 30w,
+            {{img_url cover_image size="xs" format="avif"}} 100w,
+            {{img_url cover_image size="s" format="avif"}} 300w,
+            {{img_url cover_image size="m" format="avif"}} 600w,
+            {{img_url cover_image size="l" format="avif"}} 1200w,
+            {{img_url cover_image size="xl" format="avif"}} 2000w
+        {{else}}
+            {{img_url feature_image size="xxs" format="avif"}} 30w,
+            {{img_url feature_image size="xs" format="avif"}} 100w,
+            {{img_url feature_image size="s" format="avif"}} 300w,
+            {{img_url feature_image size="m" format="avif"}} 600w,
+            {{img_url feature_image size="l" format="avif"}} 1200w,
+            {{img_url feature_image size="xl" format="avif"}} 2000w
+        {{/if}}"
+        {{#if card}} sizes="(min-width: 800px) 100vw, 700px" {{else}} sizes="(min-width: 1200px) 1200px, 100vw" {{/if}}
+        type="image/avif"
+    >
+    <source
+        data-srcset="
+        {{#if from_author}}
+            {{img_url cover_image size="xxs" format="webp"}} 30w,
+            {{img_url cover_image size="xs" format="webp"}} 100w,
+            {{img_url cover_image size="s" format="webp"}} 300w,
+            {{img_url cover_image size="m" format="webp"}} 600w,
+            {{img_url cover_image size="l" format="webp"}} 1200w,
+            {{img_url cover_image size="xl" format="webp"}} 2000w
+        {{else}}
+            {{img_url feature_image size="xxs" format="webp"}} 30w,
+            {{img_url feature_image size="xs" format="webp"}} 100w,
+            {{img_url feature_image size="s" format="webp"}} 300w,
+            {{img_url feature_image size="m" format="webp"}} 600w,
+            {{img_url feature_image size="l" format="webp"}} 1200w,
+            {{img_url feature_image size="xl" format="webp"}} 2000w
+        {{/if}}"
+        {{#if card}} sizes="(min-width: 800px) 100vw, 700px" {{else}} sizes="(min-width: 1200px) 1200px, 100vw" {{/if}}
+        type="image/webp"
+    >
+    <img
+        data-srcset="
+        {{#if from_author}}
+            {{img_url cover_image size="xxs"}} 30w,
+            {{img_url cover_image size="xs"}} 100w,
+            {{img_url cover_image size="s"}} 300w,
+            {{img_url cover_image size="m"}} 600w,
+            {{img_url cover_image size="l"}} 1200w,
+            {{img_url cover_image size="xl"}} 2000w
+        {{else}}
+            {{img_url feature_image size="xxs"}} 30w,
+            {{img_url feature_image size="xs"}} 100w,
+            {{img_url feature_image size="s"}} 300w,
+            {{img_url feature_image size="m"}} 600w,
+            {{img_url feature_image size="l"}} 1200w,
+            {{img_url feature_image size="xl"}} 2000w
+        {{/if}}"
+        {{#if card}} sizes="(min-width: 800px) 100vw, 700px" {{else}} sizes="(min-width: 1200px) 1200px, 100vw" {{/if}}
+        {{#if card}} data-src="{{#if from_author}}{{img_url cover_image size="m"}}{{else}}{{img_url feature_image size="m"}}{{/if}}"
+        {{else if popular_tag}} data-src="{{#if from_author}}{{img_url cover_image size="s"}}{{else}}{{img_url feature_image size="s"}}{{/if}}"
+        {{else}} data-src="{{#if from_author}}{{img_url cover_image size="l"}}{{else}}{{img_url feature_image size="l"}}{{/if}}" {{/if}}
+        alt="{{#match picture_type "post"}}{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}{{/match}}{{#match picture_type "tag"}}{{name}}{{/match}}"
+        class="{{#if card}}it-card-image{{else}}it-feature-image{{/if}} lazy"
+    >
+</picture>
