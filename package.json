@@ -2,7 +2,7 @@
     "name": "aesto",
     "description": "Minimalist blog & magazine theme for ghost",
     "demo": "https://aesto.visioun.com",
-    "version": "5.2.1",
+    "version": "5.2.2",
     "engines": {
         "ghost": ">=5.0.0"
     },
@@ -100,6 +100,12 @@
                 "type": "text",
                 "description": "Add the tag slugs that you want to showcase on homepage comma seperated eg. tag1,tag2,tag3",
                 "group": "homepage"
+            },
+            "language_dropdown": {
+                "type": "boolean",
+                "default": true,
+                "label": "Enable Language Dropdown",
+                "description": "Enable or disable the language dropdown in the header"
             }
         }
     },

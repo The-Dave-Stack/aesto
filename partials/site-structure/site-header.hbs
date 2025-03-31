@@ -37,6 +37,14 @@
                         {{> icons/dark}}
                     </div>
                 </div>
+                {{#if @custom.language_dropdown}}
+                    <div class="language-selector">
+                        <select id="language-dropdown" onchange="changeLanguage(this.value)">
+                            <option value="en" data-url="https://en.thedavestack.com">🇺🇸 {{t "English"}}</option>
+                            <option value="es" data-url="https://es.thedavestack.com">🇪🇸 {{t "Spanish"}}</option>
+                        </select>
+                    </div>
+                {{/if}}
             </div>
         </div>
     </nav>

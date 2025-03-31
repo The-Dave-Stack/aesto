@@ -365,3 +365,57 @@ body.post-template .it-post-meta {
     flex-grow: 1;
     margin-bottom: 2rem;
 }
+
+/* Language Selector
+/* ---------------------------------------------------------- */
+.language-selector {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.language-selector select {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--color-border, #ccc);
+    border-radius: 4px;
+    padding: 5px 30px 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--color-text, inherit);
+}
+
+.language-selector::after {
+    content: '▼';
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-text, inherit);
+}
+
+/* Dark mode specific overrides if needed */
+:root[data-theme="dark"] .language-selector select,
+.dark-mode .language-selector select {
+    border-color: var(--color-border-dark, #555);
+    color: var(--color-text-dark, #fff);
+}
+
+:root[data-theme="dark"] .language-selector::after,
+.dark-mode .language-selector::after {
+    color: var(--color-text-dark, #fff);
+}
+
+/* For dropdown options (limited browser support) */
+.language-selector select option {
+    background-color: var(--color-bg, #fff);
+    color: var(--color-text, #333);
+}
+
+:root[data-theme="dark"] .language-selector select option,
+.dark-mode .language-selector select option {
+    background-color: var(--color-bg-dark, #333);
+    color: var(--color-text-dark, #fff);
+}

@@ -8,7 +8,38 @@ document.addEventListener("DOMContentLoaded", function() {
     setupLightbox();
     lazyLoadImages();
     resizeGalleryImages();
+    languageSelector();
 });
+
+// language selector
+function changeLanguage(language) {
+  // Get the URL from the selected option's data-url attribute
+  const selectedOption = document.querySelector(`#language-dropdown option[value="${language}"]`);
+  const newUrl = selectedOption.getAttribute('data-url');
+    
+  // Get the current path (everything after the domain)
+  const currentPath = window.location.pathname;
+    
+  // Navigate to the new domain with the current path
+  //console.log('Language Selector:', `${domain}${currentPath}`);
+  window.location.href = `${newUrl}${currentPath}`;
+}
+
+// Set selected language based on current URL
+function languageSelector() {
+  // Check if the dropdown exists
+  const dropdown = document.getElementById('language-dropdown');
+  if (!dropdown) return;
+  
+  const currentDomain = window.location.hostname;
+  //console.log('Current Domain:', currentDomain);
+  
+  if (currentDomain.startsWith('en.')) {
+      dropdown.value = 'en';
+  } else if (currentDomain.startsWith('es.')) {
+      dropdown.value = 'es';
+  }
+}
 
 //gallery
 function resizeGalleryImages() {
