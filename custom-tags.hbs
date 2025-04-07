@@ -28,12 +28,20 @@
 	    <div class="it-tags it-grid-c3">
 	    	{{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
 		        {{#foreach tags}}
-		            <a class="it-tags-item" title="{{name}}" href='{{ url }}'>
-		                <h2 class="it-tags-title" {{#if accent_color}}style="color: {{accent_color}};"{{/if}}>
-		                    {{ name }}
-		                </h2>
-		                <span>{{count.posts}} {{t "Articles"}}</span>
-		            </a>
+		            <a class="tag-card" href="{{url}}" style="--accent-color: {{accent_color}};">
+                    {{#if feature_image}}
+                        <div class="tag-card-image">
+                            <img src="{{img_url feature_image}}" alt="{{name}}">
+                        </div>
+                    {{/if}}
+                    <div class="tag-card-body">
+                        <h1 class="tag-card-title">{{name}}</h1>
+                        {{#if description}}
+                            <p class="tag-card-description">{{description}}</p>
+                        {{/if}}
+												<span class="tag-count">{{count.posts}} {{t "Articles"}}</span>
+                    </div>
+                </a>
 		        {{/foreach}}
 		    {{/get}}
 	    </div>
