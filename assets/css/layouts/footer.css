@@ -73,6 +73,8 @@
 }
 .it-foot-social a svg {
     height: 1.4rem;
+    fill: var(--color-base); /* Modo claro */
+    transition: fill 0.3s ease, transform 0.3s ease;
 }
 
 

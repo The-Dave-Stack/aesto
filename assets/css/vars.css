@@ -1,44 +1,82 @@
-/* Variables
-/* ---------------------------------------------------------- */
+/* ─────────────────────────────────────────────
+   🌈 The Dave Stack — Custom CSS Variables
+   Optimizado para claridad y mantenimiento
+───────────────────────────────────────────── */
 
 :root {
+  /* 🎨 Colores base */
+  --color-primary: var(--ghost-accent-color, #199a9a); /* Teal Profundo */
+  --color-success: #1edab4; /* Verde Menta */
+  --color-danger: #c31717; /* Mantener, o personalizar luego */
+  --color-base: #093142; /* Azul Petróleo Profundo */
+  --color-border: #dce3e5; /* Gris suave para bordes */
+  --color-bg: #f4f7f8; /* Fondo claro general */
+  --color-bg-white: #ffffff; /* Blanco puro */
 
-    /* Colours */
-    --color-primary: var(--ghost-accent-color, #c32b48);
-    --color-success: #084c16;
-    --color-danger: #c31717;
-    --color-base: #3c4257;
-    --color-border: #e1edf4;
-    --color-bg: #f6f9fe;
-    --color-bg-white: #fff;
+  /* ✍️ Colores de texto */
+  --text-color-primary: #093142;     /* Texto general */
+  --text-color-inverted: #ffffff;    /* Texto sobre fondo oscuro */
+  --text-color-link: #199A9A;        /* Links */
+  --text-color-link-hover: #1EDAB4;  /* Hover o focus en links */
 
-    /* Fonts */
-    --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    --font-serif: Georgia, Times, serif;
-    --font-mono: Menlo, Courier, monospace;
-    --font-light: 100;
-    --font-normal: 400;
-    --font-bold: 700;
-    --font-heavy: 800;
+  /* 🔤 Tipografías */
+  --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  --font-serif: Georgia, Times, serif;
+  --font-mono: Menlo, Courier, monospace;
+  --font-light: 100;
+  --font-normal: 400;
+  --font-bold: 700;
+  --font-heavy: 800;
 
-    /* Breakpoints */
-    --xlarge: 1680px;
-    --large: 1280px;
-    --medium: 980px;
-    --small: 740px;
-    --xsmall: 480px;
+  /* 📱 Breakpoints */
+  --xlarge: 1680px;
+  --large: 1280px;
+  --medium: 980px;
+  --small: 740px;
+  --xsmall: 480px;
 
-    /* Sizes */
-    --height: 4rem;
-    --margin: 2rem;
-    --radius: 0.5rem;
+  /* 📏 Espaciado y tamaños */
+  --height: 4rem;
+  --margin: 2rem;
+  --radius: 0.5rem;
 
-    --container-width: 1200px;
+  --container-width: 1200px;
 }
 
+/* 🌙 Modo oscuro */
 html[data-theme="dark"] {
-      --color-base: #ffffff5c;
-      --color-bg: #171a1e;
-      --color-bg-white: #13161a;
-      --color-border: #333;
-    }
+  --color-base: #f4f7f8; /* Texto claro principal */
+  --color-bg: #091e42; /* Fondo general oscuro (Azul Nocturno) */
+  --color-bg-white: #093142; /* Alternativa más clara para secciones */
+  --color-border: #1d2b38; /* Bordes sutiles en tonos oscuros */
+
+  --text-color-primary: #F4F7F8;
+  --text-color-inverted: #093142;
+  --text-color-link: #1EDAB4;
+  --text-color-link-hover: #199A9A;
+}
+
+/* ✨ Estilos condicionales en modo oscuro */
+html[data-theme="dark"] .it-post-card-by a,
+html[data-theme="dark"] .it-post-card-tags a {
+  color: rgba(244, 247, 248, 0.7); /* Texto gris claro para metadata */
+}
+
+/* 💡 Hover en ambos modos */
+html .it-post-card-by a:hover,
+html .it-post-card-tags a:hover {
+  color: #1EDAB4;
+}
+
+/* En modo oscuro, adaptar el color para contraste */
+html[data-theme="dark"] .it-foot-social a svg {
+  fill: var(--text-color-primary); /* #F4F7F8 o similar */
+}
+
+/* Hover para ambos modos */
+.it-foot-social a:hover svg {
+  fill: var(--text-color-link-hover); /* #1EDAB4 */
+  transform: scale(1.1);
+}
