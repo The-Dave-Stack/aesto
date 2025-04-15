@@ -40,8 +40,15 @@
                 {{#if @custom.language_dropdown}}
                     <div class="language-selector">
                         <select id="language-dropdown" onchange="changeLanguage(this.value)">
-                            <option value="en" data-url="https://en.thedavestack.com">🇺🇸 {{t "English"}}</option>
-                            <option value="es" data-url="https://es.thedavestack.com">🇪🇸 {{t "Spanish"}}</option>
+                            {{#if @custom.enable_en_language}}
+                                <option value="en" data-url="https://en.thedavestack.com">🇺🇸 {{t "English"}}</option>
+                            {{/if}}
+                            {{#if @custom.enable_es_language}}
+                                <option value="es" data-url="https://es.thedavestack.com">🇪🇸 {{t "Spanish"}}</option>
+                            {{/if}}
+                            {{#if @custom.enable_zh_language}}
+                                <option value="zh" data-url="https://zh.thedavestack.com">🇨🇳 {{t "Chinese"}}</option>
+                            {{/if}}
                         </select>
                     </div>
                 {{/if}}

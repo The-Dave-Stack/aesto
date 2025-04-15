@@ -1,113 +1,128 @@
 {
-    "name": "aesto",
-    "description": "Minimalist blog & magazine theme for ghost",
-    "demo": "https://aesto.visioun.com",
-    "version": "5.2.5",
-    "engines": {
-        "ghost": ">=5.0.0"
+  "name": "aesto",
+  "description": "Minimalist blog & magazine theme for ghost",
+  "demo": "https://aesto.visioun.com",
+  "version": "5.2.6",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "zip": "gulp zip",
+    "test": "gscan .",
+    "test:ci": "gscan --fatal --verbose .",
+    "pretest": "gulp build",
+    "preship": "yarn test"
+  },
+  "author": {
+    "name": "Visioun by Inoryum",
+    "email": "hello@visioun.com",
+    "url": "https://visioun.com"
+  },
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Minimal",
+      "Magazine"
+    ]
+  },
+  "keywords": [
+    "ghost-theme",
+    "theme",
+    "blog",
+    "magazine"
+  ],
+  "devDependencies": {
+    "autoprefixer": "10.4.13",
+    "beeper": "2.1.0",
+    "cssnano": "5.1.14",
+    "gscan": "^4.37.5",
+    "gulp": "4.0.2",
+    "gulp-concat": "2.6.1",
+    "gulp-livereload": "4.0.2",
+    "gulp-postcss": "9.0.1",
+    "gulp-uglify": "3.0.2",
+    "gulp-util": "3.0.8",
+    "gulp-watch": "5.0.1",
+    "gulp-zip": "5.1.0",
+    "postcss": "8.4.21",
+    "postcss-easy-import": "3.0.0",
+    "pump": "3.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "config": {
+    "card_assets": {
+      "exclude": [
+        "blockquote",
+        "bookmark",
+        "image",
+        "gallery"
+      ]
     },
-    "scripts": {
-        "dev": "gulp",
-        "zip": "gulp zip",
-        "test": "gscan .",
-        "test:ci": "gscan --fatal --verbose .",
-        "pretest": "gulp build",
-        "preship": "yarn test"
+    "posts_per_page": 10,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 2000
+      }
     },
-    "author": {
-        "name": "Visioun by Inoryum",
-        "email": "hello@visioun.com",
-        "url": "https://visioun.com"
-    },
-    "gpm": {
-        "type": "theme",
-        "categories": [
-            "Minimal",
-            "Magazine"
-        ]
-    },
-    "keywords": [
-        "ghost-theme",
-        "theme",
-        "blog",
-        "magazine"
-    ],
-    "devDependencies": {
-        "autoprefixer": "10.4.13",
-        "beeper": "2.1.0",
-        "cssnano": "5.1.14",
-        "gscan": "^4.37.5",
-        "gulp": "4.0.2",
-        "gulp-concat": "2.6.1",
-        "gulp-livereload": "4.0.2",
-        "gulp-postcss": "9.0.1",
-        "gulp-uglify": "3.0.2",
-        "gulp-util": "3.0.8",
-        "gulp-watch": "5.0.1",
-        "gulp-zip": "5.1.0",
-        "postcss": "8.4.21",
-        "postcss-easy-import": "3.0.0",
-        "pump": "3.0.0"
-    },
-    "browserslist": [
-        "defaults"
-    ],
-    "config": {
-        "card_assets": {
-            "exclude": [
-                "blockquote",
-                "bookmark",
-                "image",
-                "gallery"
-            ]
-        },
-        "posts_per_page": 10,
-        "image_sizes": {
-            "xxs": {
-                "width": 30
-            },
-            "xs": {
-                "width": 100
-            },
-            "s": {
-                "width": 300
-            },
-            "m": {
-                "width": 600
-            },
-            "l": {
-                "width": 1200
-            },
-            "xl": {
-                "width": 2000
-            }
-        },
-        "custom": {
-            "use_portal_links": {
-                "type": "boolean",
-                "default": true,
-                "description": "If true the portal links will be used."
-            },
-            "cta_title": {
-                "type": "text",
-                "default": "Subscribe"
-            },
-            "cta_text": {
-                "type": "text",
-                "default": "Stay up to date! Get all the latest & greatest posts delivered straight to your inbox"
-            },
-            "featured_tag_slugs": {
-                "type": "text",
-                "description": "Add the tag slugs that you want to showcase on homepage comma seperated eg. tag1,tag2,tag3",
-                "group": "homepage"
-            },
-            "language_dropdown": {
-                "type": "boolean",
-                "default": true,
-                "label": "Enable Language Dropdown",
-                "description": "Enable or disable the language dropdown in the header"
-            }
-        }
-    },
-    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "custom": {
+      "use_portal_links": {
+        "type": "boolean",
+        "default": true,
+        "description": "If true the portal links will be used."
+      },
+      "cta_title": {
+        "type": "text",
+        "default": "Subscribe"
+      },
+      "cta_text": {
+        "type": "text",
+        "default": "Stay up to date! Get all the latest & greatest posts delivered straight to your inbox"
+      },
+      "featured_tag_slugs": {
+        "type": "text",
+        "description": "Add the tag slugs that you want to showcase on homepage comma seperated eg. tag1,tag2,tag3",
+        "group": "homepage"
+      },
+      "language_dropdown": {
+        "type": "boolean",
+        "default": true,
+        "label": "Enable Language Dropdown",
+        "description": "Enable or disable the language dropdown in the header"
+      },
+      "enable_en_language": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the English language in the language dropdown"
+      },
+      "enable_es_language": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the Spanish language in the language dropdown"
+      },
+      "enable_zh_language": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable or disable the Chinese language in the language dropdown"
+      }
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
