@@ -38,6 +38,8 @@ function languageSelector() {
       dropdown.value = 'en';
   } else if (currentDomain.startsWith('es.')) {
       dropdown.value = 'es';
+  } else if (currentDomain.startsWith('zh.')) {
+      dropdown.value = 'zh';
   }
 }
 
