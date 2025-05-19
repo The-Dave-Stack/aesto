@@ -482,3 +482,25 @@ body.post-template .it-post-meta {
     background-color: var(--color-bg-dark, #333);
     color: var(--color-text-dark, #fff);
 }
+
+/* Reading Progress
+/* ---------------------------------------------------------- */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 5px; /* Progress bar height */
+  background: #c5d2d9; /* Progress bar background color */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; /* Hide default progress bar */
+}
+
+.reading-progress::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+.reading-progress::-webkit-progress-value {
+  background: var(--ghost-accent-color); /* Progress bar color */
+}

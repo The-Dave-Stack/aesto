@@ -2,14 +2,14 @@
   "name": "aesto",
   "description": "Minimalist blog & magazine theme for ghost",
   "demo": "https://aesto.visioun.com",
-  "version": "5.2.8",
+  "version": "5.2.9",
   "engines": {
     "ghost": ">=5.0.0"
   },
   "scripts": {
     "dev": "gulp",
     "zip": "gulp zip",
-    "test": "gscan .",
+    "test": "gscan . --verbose",
     "test:ci": "gscan --fatal --verbose .",
     "pretest": "gulp build",
     "preship": "yarn test"
@@ -34,6 +34,7 @@
   ],
   "devDependencies": {
     "autoprefixer": "10.4.13",
+    "bcrypt": "^6.0.0",
     "beeper": "2.1.0",
     "cssnano": "5.1.14",
     "gscan": "^4.37.5",

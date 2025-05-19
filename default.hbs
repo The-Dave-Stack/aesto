@@ -41,5 +41,22 @@
         {{> "membership/notifications"}} 
         {{> "site-structure/site-scripts"}} 
         {{ghost_foot}} {{!-- Outputs important scripts - should always be included before closing body tag --}}
+        {{#is "post"}}
+        <script>
+            console.log('Reading progress bar script loaded');
+            const progressBar = document.querySelector('.reading-progress');
+
+            function updateProgress() {
+                const totalHeight = document.body.clientHeight;
+                const windowHeight = document.documentElement.clientHeight;
+                const position = window.scrollY;
+                const progress = position / (totalHeight - windowHeight) * 100;
+                progressBar.setAttribute('value', progress);
+                requestAnimationFrame(updateProgress);
+            }
+
+            requestAnimationFrame(updateProgress);
+        </script>
+        {{/is}}
     </body>
 </html>
