@@ -42,6 +42,12 @@
         {{> "membership/notifications"}} 
         {{> "site-structure/site-scripts"}} 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.min.js"></script>
+        <script type="text/javascript">
+        if (typeof jQuery == 'undefined') {
+            document.write('<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></'+'script>');
+        }
+        </script>
+        <script src="{{asset "js/ghost-dynamic-dropdown.js"}}"></script>
         {{! Initialize Tocbot after you load the script }}
         <script>
             tocbot.init({

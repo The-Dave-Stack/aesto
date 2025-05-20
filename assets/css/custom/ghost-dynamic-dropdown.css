@@ -1,0 +1,121 @@
+/* Estilos generales para todos los elementos de menú con hijos */
+.nav li.menu-item-has-children,
+.nav li.mL-has-submenu {
+    position: relative; /* Fundamental para posicionar submenús absolutos e iconos */
+}
+
+/* Ajustar el enlace <a> para hacer espacio al SVG */
+.nav li.menu-item-has-children > a,
+.nav li.mL-has-submenu > a {
+    padding-right: 25px; /* Ajusta este valor según el tamaño del SVG y el espacio deseado */
+    display: inline-block; /* O block, dependiendo de tu layout */
+}
+
+/* Estilos para los SVG (flechas).
+   Asumimos que la librería añade el SVG dentro del <li> pero fuera del <a>.
+   Si solo hay un SVG visible y es el correcto, esto está bien.
+   Si hay dos y quieres mostrar solo uno, necesitarás una clase más específica en el SVG deseado.
+*/
+.nav li.menu-item-has-children > svg,
+.nav li.mL-has-submenu > svg {
+    position: absolute;
+    right: 8px; /* Distancia desde el borde derecho del <li> */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    pointer-events: none; /* Para que el clic vaya al enlace y no al SVG */
+    stroke: currentColor; /* Asegura que tome el color del texto del padre o un color específico */
+    /* display: block;  Ya son inline por defecto, pero block puede ayudar en algunos layouts */
+    z-index: 5; /* Por si acaso, para que esté sobre el fondo del <a> pero debajo del submenú */
+}
+
+/* Si tienes dos SVGs y quieres ocultar el segundo (o el primero) como apaño rápido: */
+/* .nav li.menu-item-has-children > svg:nth-of-type(2),
+.nav li.mL-has-submenu > svg:nth-of-type(2) {
+    display: none;
+} */
+
+
+/* --- Resto de tus estilos de submenú (del mensaje anterior) --- */
+
+/* Estilos base para TODOS los submenús (primer, segundo nivel, etc.) */
+.nav ul.ghost-submenu,
+.nav ul.mL-submenu {
+    background: var(--color-bg-white, #fff);
+    color: var(--text-color-primary, #000);
+    padding: 10px;
+    border-radius: 5px;
+    width: 220px;
+    max-width: 220px;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s, top 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+}
+
+/* Posicionamiento para el PRIMER NIVEL de submenú */
+.nav li.menu-item-has-children > ul.ghost-submenu {
+    top: 30px;
+    left: 0;
+}
+
+/* Mostrar el PRIMER NIVEL de submenú al hacer hover sobre el padre */
+.nav li.menu-item-has-children:hover > ul.ghost-submenu {
+    visibility: visible;
+    opacity: 1;
+    top: 45px;
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* Posicionamiento para el SEGUNDO NIVEL (y subsecuentes) de submenú */
+.nav ul.ghost-submenu li.mL-has-submenu > ul.mL-submenu,
+.nav ul.mL-submenu li.mL-has-submenu > ul.mL-submenu {
+    top: -1px; 
+    left: 100%;
+    margin-left: 1px;
+}
+
+/* Mostrar el SEGUNDO NIVEL (y subsecuentes) de submenú al hacer hover sobre su 'li' padre */
+.nav ul.ghost-submenu li.mL-has-submenu:hover > ul.mL-submenu,
+.nav ul.mL-submenu li.mL-has-submenu:hover > ul.mL-submenu {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+/* Estilos para los items <li> dentro de CUALQUIER submenú */
+.nav ul.ghost-submenu li,
+.nav ul.mL-submenu li {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilos para los enlaces <a> dentro de CUALQUIER submenú */
+.nav ul.ghost-submenu li a,
+.nav ul.mL-submenu li a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--text-color-primary, #000);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav ul.ghost-submenu li a:hover,
+.nav ul.mL-submenu li a:hover {
+    background-color: var(--color-bg, #f0f0f0);
+    color: var(--text-color-link-hover, #199a9a);
+}
+
+.nav > li {
+    opacity: 1 !important;
+}
+.nav ul.ghost-submenu li,
+.nav ul.mL-submenu li {
+    opacity: 1 !important;
+}

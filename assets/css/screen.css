@@ -28,6 +28,9 @@ production stylesheet in assets/built/screen.css using: gulp dev
 @import 'layouts/badge.css';
 @import 'layouts/grid.css';
 
+/* Custom styles */
+@import 'custom/ghost-dynamic-dropdown.css';
+
 /* Main - Your styles here! Edit below
 /* ---------------------------------------------------------- */
 

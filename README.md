@@ -64,6 +64,9 @@ Aesto is a Ghost theme with clean & content focused design. The theme is fully r
     - Gallery and Bookmark and all other inbuilt card in Koenig editor
 *   Responsive YouTube, Vimeo, SoundCloud, Spotify, twitter, Instagram and all other embed
 *   Previous and next post link in single post view
+*   Submenus
+    - Using library: https://github.com/themeix/ghost-dynamic-dropdown.
+    - Docs: https://support.themeix.com/how-to-add-dropdown-navigation-in-newsfeed/
 
 # Documentation 
 
