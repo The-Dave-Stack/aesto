@@ -22,13 +22,13 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build and zip theme
         run: yarn zip
 
       - name: Get version and theme name from package.json
-        id: package_version
+        id: package_info
         run: |
           echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
           echo "THEME_NAME=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
@@ -40,10 +40,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.package_version.outputs.VERSION }}
-          release_name: Release v${{ steps.package_version.outputs.VERSION }}
+          tag_name: v${{ steps.package_info.outputs.VERSION }}
+          release_name: Release v${{ steps.package_info.outputs.VERSION }}
           body: |
-            Release para la versión ${{ steps.package_version.outputs.VERSION }} del tema ${{ steps.package_version.outputs.THEME_NAME }}.
+            Release para la versión ${{ steps.package_info.outputs.VERSION }} del tema ${{ steps.package_info.outputs.THEME_NAME }}.
             Cambios incluidos en este push a master.
           draft: false
           prerelease: false
@@ -54,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/${{ steps.package_version.outputs.THEME_NAME }}.zip
-          asset_name: ${{ steps.package_version.outputs.THEME_NAME }}-v${{ steps.package_version.outputs.VERSION }}.zip
+          asset_path: ./dist/${{ steps.package_info.outputs.THEME_NAME }}_v${{ steps.package_info.outputs.VERSION }}.zip 
+          asset_name: ${{ steps.package_info.outputs.THEME_NAME }}_v${{ steps.package_info.outputs.VERSION }}.zip
           asset_content_type: application/zip
