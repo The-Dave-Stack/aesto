@@ -3,13 +3,13 @@ name: Create Theme Release
 on:
   push:
     branches:
-      - master # O 'main' si esa es tu rama principal
+      - master
 
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Necesario para crear releases y subir assets
+      contents: write
 
     steps:
       - name: Checkout code
@@ -18,16 +18,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # Especifica una versión LTS de Node.js, ajusta si es necesario
+          node-version: '22'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
 
       - name: Build and zip theme
-        # Este comando viene de tu package.json ("zip": "gulp zip")
-        # y gulpfile.js que empaqueta el tema.
-        run: yarn zip #
+        run: yarn zip
 
       - name: Get version and theme name from package.json
         id: package_version
@@ -40,7 +38,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token proporcionado por GitHub Actions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.package_version.outputs.VERSION }}
           release_name: Release v${{ steps.package_version.outputs.VERSION }}
@@ -55,7 +53,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # URL de subida de la release creada
-          asset_path: ./dist/${{ steps.package_version.outputs.THEME_NAME }}.zip # Ruta al archivo ZIP generado por 'yarn zip'
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/${{ steps.package_version.outputs.THEME_NAME }}.zip
           asset_name: ${{ steps.package_version.outputs.THEME_NAME }}-v${{ steps.package_version.outputs.VERSION }}.zip
           asset_content_type: application/zip
