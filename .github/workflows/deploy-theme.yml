@@ -1,14 +1,61 @@
-name: Deploy Theme
+name: Create Theme Release
+
 on:
   push:
     branches:
-      - master
+      - master # O 'main' si esa es tu rama principal
+
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+  build_and_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Necesario para crear releases y subir assets
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: TryGhost/action-deploy-theme@v1.4.1
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
-          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          node-version: '18' # Especifica una versión LTS de Node.js, ajusta si es necesario
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build and zip theme
+        # Este comando viene de tu package.json ("zip": "gulp zip")
+        # y gulpfile.js que empaqueta el tema.
+        run: yarn zip #
+
+      - name: Get version and theme name from package.json
+        id: package_version
+        run: |
+          echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+          echo "THEME_NAME=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+          #
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token proporcionado por GitHub Actions
+        with:
+          tag_name: v${{ steps.package_version.outputs.VERSION }}
+          release_name: Release v${{ steps.package_version.outputs.VERSION }}
+          body: |
+            Release para la versión ${{ steps.package_version.outputs.VERSION }} del tema ${{ steps.package_version.outputs.THEME_NAME }}.
+            Cambios incluidos en este push a master.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset (Theme ZIP)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # URL de subida de la release creada
+          asset_path: ./dist/${{ steps.package_version.outputs.THEME_NAME }}.zip # Ruta al archivo ZIP generado por 'yarn zip'
+          asset_name: ${{ steps.package_version.outputs.THEME_NAME }}-v${{ steps.package_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
