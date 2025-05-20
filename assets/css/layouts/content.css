@@ -75,10 +75,11 @@
     line-height: 1.6em;
 }
 
-.it-content > ul,
-.it-content > ol,
-.it-content > dl {
+.it-content ul,
+.it-content ol,
+.it-content dl {
     padding-left: 1.9em;
+    list-style-position: outside;
 }
 
 .it-content hr {
