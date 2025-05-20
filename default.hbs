@@ -24,6 +24,7 @@
                }
             }
         </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.css">
     
         {{ghost_head}}
         {{!-- Outputs SEO meta+structured data and important settings, should always be in <head> --}}
@@ -40,10 +41,30 @@
         </div>
         {{> "membership/notifications"}} 
         {{> "site-structure/site-scripts"}} 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.min.js"></script>
+        {{! Initialize Tocbot after you load the script }}
+        <script>
+            tocbot.init({
+                // Where to render the table of contents.
+                tocSelector: '.gh-toc',
+                // Where to grab the headings to build the table of contents.
+                contentSelector: '.it-content',
+                // Which headings to grab inside of the contentSelector element.
+                headingSelector: 'h1, h2, h3, h4',
+                // Ensure correct positioning
+                hasInnerContainers: true,
+                /* Fijación */
+                positionFixedSelector: '.gh-sidebar',
+                positionFixedClass:   'is-sticky', // la que usarás en CSS
+                fixedSidebarOffset:   16,            // píxeles desde el top
+                headingsOffset:       16,            // corrige header fijo
+                scrollSmooth:         true,
+                scrollSmoothOffset:  -16
+            });
+        </script>
         {{ghost_foot}} {{!-- Outputs important scripts - should always be included before closing body tag --}}
         {{#is "post"}}
         <script>
-            console.log('Reading progress bar script loaded');
             const progressBar = document.querySelector('.reading-progress');
 
             function updateProgress() {
