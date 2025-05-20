@@ -9,8 +9,65 @@ document.addEventListener('DOMContentLoaded', function () {
   lazyLoadImages();
   resizeGalleryImages();
   languageSelector();
+  applyHighlightJsCdnTheme();
   disableSubmenusClickInterval = setInterval(() => disableSubmenusClick(), 1000);
 });
+
+// Highlight.js theme
+function applyHighlightJsCdnTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const lightThemeLink = document.getElementById('highlightjs-light-theme');
+  const darkThemeLink = document.getElementById('highlightjs-dark-theme');
+
+  if (currentTheme === 'dark') {
+    if (darkThemeLink) {
+      darkThemeLink.removeAttribute('disabled');
+      darkThemeLink.setAttribute('media', 'all');
+    }
+    if (lightThemeLink) {
+      lightThemeLink.setAttribute('disabled', 'true');
+      lightThemeLink.setAttribute('media', 'none');
+    }
+  } else {
+    // 'light' o por defecto
+    if (lightThemeLink) {
+      lightThemeLink.removeAttribute('disabled');
+      lightThemeLink.setAttribute('media', 'all');
+    }
+    if (darkThemeLink) {
+      darkThemeLink.setAttribute('disabled', 'true');
+      darkThemeLink.setAttribute('media', 'none');
+    }
+  }
+}
+
+// Definimos la función aquí también para que esté disponible en el scope de este script
+// o nos aseguramos de que la definida en default.hbs es global.
+// Por simplicidad, la redefinimos aquí, pero idealmente estaría en un solo lugar.
+function updateHighlightJsThemeForToggle() {
+  const currentTheme = html.getAttribute('data-theme');
+  const lightThemeLink = document.getElementById('highlightjs-light-theme');
+  const darkThemeLink = document.getElementById('highlightjs-dark-theme');
+
+  // console.log("Toggling Highlight.js theme for:", currentTheme); // Debug
+
+  if (lightThemeLink && darkThemeLink) {
+    if (currentTheme === 'dark') {
+      darkThemeLink.removeAttribute('disabled');
+      darkThemeLink.setAttribute('media', 'all');
+      lightThemeLink.setAttribute('disabled', 'true');
+      lightThemeLink.setAttribute('media', 'none');
+    } else {
+      // 'light'
+      lightThemeLink.removeAttribute('disabled');
+      lightThemeLink.setAttribute('media', 'all');
+      darkThemeLink.setAttribute('disabled', 'true');
+      darkThemeLink.setAttribute('media', 'none');
+    }
+  } else {
+    // console.warn("Highlight.js theme link tags not found."); // Debug
+  }
+}
 
 // Disable submenus click
 function disableSubmenusClick() {
@@ -18,7 +75,6 @@ function disableSubmenusClick() {
 
   menuItems.forEach(function (menuLink, idx) {
     if (menuLink.getAttribute('href') && menuLink.getAttribute('href')) {
-
       menuLink.addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -104,6 +160,7 @@ darkLight.addEventListener('click', function () {
     html.setAttribute('data-theme', 'light');
     localStorage.setItem('selected-theme', 'light');
   }
+  updateHighlightJsThemeForToggle();
   console.log(html.hasAttribute('data-theme'));
 });
 
