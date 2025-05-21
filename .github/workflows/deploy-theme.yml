@@ -28,6 +28,13 @@ jobs:
       - name: Test theme
         run: yarn test:ci
 
+      - name: Generate Changelog for Release
+        id: generate_changelog
+        uses: metcalfc/conventional-changelog-action@v2.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          tag-prefix: 'v'
+
       - name: Build and zip theme
         run: yarn zip
 
@@ -46,9 +53,7 @@ jobs:
         with:
           tag_name: v${{ steps.package_info.outputs.VERSION }}
           release_name: Release v${{ steps.package_info.outputs.VERSION }}
-          body: |
-            Release para la versión ${{ steps.package_info.outputs.VERSION }} del tema ${{ steps.package_info.outputs.THEME_NAME }}.
-            Cambios incluidos en este push a master.
+          body: ${{ steps.generate_changelog.outputs.changelog }}
           draft: false
           prerelease: false
 

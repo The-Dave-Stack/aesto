@@ -13,7 +13,8 @@
     "test": "gscan . --verbose",
     "test:ci": "gscan --fatal --verbose .",
     "pretest": "gulp build",
-    "preship": "yarn test"
+    "preship": "yarn test",
+    "version": "commit-and-tag-version"
   },
   "author": {
     "name": "Visioun by Inoryum",
@@ -37,6 +38,7 @@
     "autoprefixer": "10.4.13",
     "bcrypt": "^6.0.0",
     "beeper": "2.1.0",
+    "commit-and-tag-version": "^12.5.1",
     "cssnano": "5.1.14",
     "gscan": "^4.37.5",
     "gulp": "4.0.2",
