@@ -87,5 +87,7 @@
 	"Links": "Enlaces",
 	"English": "Inglés",
 	"Spanish": "Español",
-	"Chinese": "Chino"
+	"Chinese": "Chino",
+	"No posts found with tag slug: '{tagslug}'.": "No se encontraron posts con el tag slug: '{tagslug}'.",
+	"This page has no internal tag to filter posts.": "Esta página no tiene un tag interno como primer tag para filtrar posts."
 }

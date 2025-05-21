@@ -1,83 +1,90 @@
 {{!< default}}
 <div class="it-page">
-    <div class="it-container">
-      {{#post}}
-        <section class="custom-page-image">
-          {{#if feature_image}}
-            <figure style="width: 80%;">
-                 {{>image picture_type="post" card=false}}
-            </figure>
-          {{/if}}
-        </section>
-        <section class="custom-page-title">
-          <h1 class="it-custom-page-title-centered">{{title}}</h1>
-        </section>
-        <section class="custom-page-content">
-          <div class="it-content it-canvas" style="--gap: 0">
-            {{content}}
-          </div>
-        </section>
-      {{/post}}
+  <div class="it-container">
+    {{#post}}
+      <section class="custom-page-image">
+        {{#if feature_image}}
+          <figure style="width: 80%;">
+               {{>image picture_type="post" card=false}}
+          </figure>
+        {{/if}}
+      </section>
+      <section class="custom-page-title">
+        <h1 class="it-custom-page-title-centered">{{title}}</h1>
+      </section>
+      <section class="custom-page-content">
+        <div class="it-content it-canvas" style="--gap: 0">
+          {{content}}
+        </div>
+      </section>
       <section class="custom-post-grid">
-      {{#get "posts" filter="tag:hash-authentication-jwt" order="published_at asc" include="authors,tags" page=1}} {{!-- Ajusta el filtro y límite --}}
-        {{#foreach posts}}
-            <article class="it-card {{post_class}}">
-              <a class="it-card-link" href="{{url}}" title="{{title}}">
-              {{#if feature_image}}
-                <figure class="it-card-image-wrapper">
-                    {{>image picture_type="post" card=true}}
-                </figure>
-              {{/if}}
-              {{#if featured}}
-                <span class="it-feature-label">
-                  {{> "icons/star"}} {{!-- partials/icons/star.hbs --}}
-                </span>
-              {{/if}}
-              {{> "membership/visibility-label"}} {{!-- partials/membership/visibility-label.hbs --}}
-              </a>
-              <div class="it-card-content">
-                <div class="it-card-meta">
-	                <span class="it-post-card-by">
-					          {{t "by"}}
-					            {{#has author="count:1"}}
-						            {{#primary_author}}
-							          <a href="{{url}}">{{name}}</a>
-						            {{/primary_author}}
-					            {{else}}
-                        {{#has author="count:2"}}
-                          {{#if authors}}
-                            {{#foreach authors}}
-                            <a href="{{url}}">{{name}}</a>
-                              {{#if @first}}
-                                {{t "&"}}
-                              {{/if}}
-                            {{/foreach}}
-                          {{/if}}
-                        {{else}}
-                          {{#has author="count:>2"}}
+        {{#if tags.[0].slug}}
+          {{#get "posts" filter="tag:{{tags.[0].slug}}" include="authors,tags" page=1}}
+            {{#foreach posts}}
+                <article class="it-card {{post_class}}">
+                  <a class="it-card-link" href="{{url}}" title="{{title}}">
+                  {{#if feature_image}}
+                    <figure class="it-card-image-wrapper">
+                        {{>image picture_type="post" card=true}}
+                    </figure>
+                  {{/if}}
+                  {{#if featured}}
+                    <span class="it-feature-label">
+                      {{> "icons/star"}}
+                    </span>
+                  {{/if}}
+                  {{> "membership/visibility-label"}}
+                  </a>
+                  <div class="it-card-content">
+                    <div class="it-card-meta">
+                      <span class="it-post-card-by">
+                        {{t "by"}}
+                          {{#has author="count:1"}}
                             {{#primary_author}}
                             <a href="{{url}}">{{name}}</a>
                             {{/primary_author}}
-                            {{t "and others"}}
+                          {{else}}
+                            {{#has author="count:2"}}
+                              {{#if authors}}
+                                {{#foreach authors}}
+                                <a href="{{url}}">{{name}}</a>
+                                  {{#if @first}}
+                                    {{t "&"}}
+                                  {{/if}}
+                                {{/foreach}}
+                              {{/if}}
+                            {{else}}
+                              {{#has author="count:>2"}}
+                                {{#primary_author}}
+                                <a href="{{url}}">{{name}}</a>
+                                {{/primary_author}}
+                                {{t "and others"}}
+                              {{/has}}
+                            {{/has}}
                           {{/has}}
-						            {{/has}}
-						          {{/has}}
-					          <time datetime="{{date format="YYYY-MM-DD"}}">{{date timeago="true"}}</time>
-				          </span> 
-			
-                  {{#foreach tags limit="1"}}
-                      <span class="it-post-card-tags">
-                        <a href="{{url}}" title="{{title}}"><span class="it-tag-hash">&#35;</span>{{name}}</a>
-                      </span>
-                  {{/foreach}}
-                </div>
-                <a class="it-card-link" href="{{url}}">
-                    <h2 class="it-card-title">{{title}}</h2>
-                </a>
-              </div>
-            </article>
-        {{/foreach}}
-      {{/get}}
-    </section>
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date timeago="true"}}</time>
+                      </span> 
+          
+                      {{#foreach tags limit="1"}}
+                          <span class="it-post-card-tags">
+                            <a href="{{url}}" title="{{title}}"><span class="it-tag-hash">&#35;</span>{{name}}</a>
+                          </span>
+                      {{/foreach}}
+                    </div>
+                    <a class="it-card-link" href="{{url}}">
+                        <h2 class="it-card-title">{{title}}</h2>
+                    </a>
+                  </div>
+                </article>
+            {{/foreach}}
+          {{/get}}
+          {{#unless posts}}
+            <p style="text-align: center; grid-column: 1 / -1;">{{t "No posts found with tag slug: '{tagslug}'." tagslug=tags.[0].slug}}</p>
+          {{/unless}}
+        {{else}}
+          <p style="text-align: center; grid-column: 1 / -1;">{{t "This page has no internal tag to filter posts."}}</p>
+        {{/if}}
+      </section>
+    {{/post}}
   </div>
 </div>
