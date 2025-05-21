@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Test theme
+        run: yarn test:ci
+
       - name: Build and zip theme
         run: yarn zip
 
