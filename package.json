@@ -2,7 +2,7 @@
   "name": "aesto",
   "description": "Minimalist blog & magazine theme for ghost",
   "demo": "https://aesto.visioun.com",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
@@ -103,6 +103,7 @@
       },
       "featured_tag_slugs": {
         "type": "text",
+        "default": "ai,software-development,ai-tools,ai-monthly-roundup,devops",
         "description": "Add the tag slugs that you want to showcase on homepage comma seperated eg. tag1,tag2,tag3",
         "group": "homepage"
       },

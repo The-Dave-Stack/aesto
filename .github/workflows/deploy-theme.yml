@@ -35,6 +35,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           tag-prefix: 'v'
           output-file: "false"
+          skip-bump: 'true'
+          skip-commit: 'true'
+          skip-tag: 'true'
 
       - name: Build and zip theme
         run: yarn zip

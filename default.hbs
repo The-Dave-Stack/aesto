@@ -24,6 +24,7 @@
                }
             }
         </script>
+        <link rel="stylesheet" type="text/css" href="{{asset "css/components/wordcloud.css"}}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.32.2/tocbot.css">
         <link id="highlightjs-default-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
         <link id="highlightjs-light-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css">
@@ -72,6 +73,9 @@
                 scrollSmoothOffset:  -16
             });
         </script>
+        {{!-- Carga de librerías ECharts desde CDN (puedes localizarlas si prefieres) --}}
+        <script src="https://cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
         {{ghost_foot}} {{!-- Outputs important scripts - should always be included before closing body tag --}}
         <script>
             if (typeof hljs !== 'undefined') {

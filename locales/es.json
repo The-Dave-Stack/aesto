@@ -89,5 +89,17 @@
 	"Spanish": "Español",
 	"Chinese": "Chino",
 	"No posts found with tag slug: '{tagslug}'.": "No se encontraron posts con el tag slug: '{tagslug}'.",
-	"This page has no internal tag to filter posts.": "Esta página no tiene un tag interno como primer tag para filtrar posts."
+	"This page has no internal tag to filter posts.": "Esta página no tiene un tag interno como primer tag para filtrar posts.",
+	"Loading tags cloud...": "Cargando nube de etiquetas...",
+  "Click on a tag to see more details. Larger tags represent the most frequent topics on the blog.": "Haz clic en una etiqueta para ver más detalles. Las etiquetas más grandes representan los temas más frecuentes en el blog.",
+  "Tag Details": "Detalles de la Etiqueta",
+  "Tag:": "Etiqueta:",
+  "Number of Articles:": "Número de Artículos:",
+  "No tags to display in the cloud.": "No hay etiquetas para mostrar en la nube.",
+  "Error: Chart container not found.": "Error: Contenedor del gráfico no encontrado.",
+  "article.singular": " artículo",
+  "article.plural": " artículos",
+  "No description.": "Sin descripción.",
+  "Articles:": "Artículos:",
+	"View articles with this tag": "Ver artículos con esta etiqueta"
 }

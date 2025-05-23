@@ -1,0 +1,235 @@
+/* Estilos del contenedor principal de la página de la nube de palabras */
+.wordcloud-page-container {
+  padding: 40px 20px;
+  max-width: 1120px;
+  text-align: center;
+}
+
+.wordcloud-page-container h1.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--ghost-accent-color, #199a9a); /* Color de acento o tu primario */
+}
+
+/* Estilos del contenedor del gráfico (chart-wrapper) */
+.chart-wrapper {
+  width: 100%;
+  height: 550px;
+  background-color: var(--wordcloud-chart-wrapper-bg);
+  padding: 25px;
+  margin: 0 auto 40px auto;
+}
+
+#wordCloudContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilos del Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  font-family: var(--font-sans);
+}
+
+.modal-content {
+  background-color: var(--wordcloud-modal-content-bg);
+  color: var(--wordcloud-modal-text-color);
+  margin: 10vh auto;
+  padding: 25px 30px 30px 30px;
+  border: 1px solid var(--wordcloud-modal-border-color);
+  width: 90%;
+  max-width: 520px;
+  border-radius: 10px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  font-size: 1rem;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--wordcloud-modal-title-color);
+  border-bottom: 1px solid var(--wordcloud-modal-border-color);
+  padding-bottom: 15px;
+  font-size: 3.5em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.modal-content p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 2em;
+}
+
+.modal-content strong {
+  color: var(--wordcloud-primary-accent);
+  font-weight: 600;
+}
+
+.close-button {
+  color: var(--wordcloud-placeholder-text-color);
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: var(--wordcloud-title-color);
+  opacity: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-tag-link-container {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid var(--wordcloud-modal-border-color);
+  text-align: center;
+}
+
+a.modal-tag-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--wordcloud-primary-accent);
+  color: var(--wordcloud-bg-color);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+a.modal-tag-link:hover,
+a.modal-tag-link:focus {
+  background-color: var(--wordcloud-primary-accent-hover, #157e7e);
+  color: var(--wordcloud-bg-color);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* Mensaje de carga (opcional) */
+.loading-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #777;
+  font-style: italic;
+}
+
+/* Echarts tooltip */
+.echarts-tooltip-card {
+  font-family: 'Inter', sans-serif; /* O la fuente principal de tu tema */
+  background-color: var(--wordcloud-modal-content-bg); /* Reutiliza color de fondo del modal */
+  border: 1px solid var(--wordcloud-modal-border-color); /* Reutiliza color de borde del modal */
+  border-radius: 8px;
+  padding: 12px 18px;
+  box-shadow: 0 4px 12px var(--wordcloud-box-shadow-color);
+  min-width: 220px;
+  max-width: 320px;
+  text-align: left; /* Asegurar alineación a la izquierda para el contenido */
+  color: var(--wordcloud-modal-text-color); /* Color de texto base del tooltip */
+  pointer-events: none; /* El tooltip no debe ser interactivo en sí mismo */
+}
+
+.echarts-tooltip-card h4.tooltip-tag-name {
+  margin: 0 0 8px 0;
+  font-size: 1.15em;
+  color: var(--wordcloud-primary-accent); /* Color de acento para el nombre */
+  border-bottom: 1px solid var(--wordcloud-tooltip-separator-color);
+  padding-bottom: 6px;
+  font-weight: bold;
+}
+
+.echarts-tooltip-card p.tooltip-article-count {
+  margin: 0 0 5px 0;
+  font-size: 0.9em;
+  color: var(--wordcloud-modal-title-color);
+}
+
+.echarts-tooltip-card p.tooltip-description {
+  margin: 8px 0 0 0; /* Espacio antes de la descripción */
+  font-size: 0.85em;
+  color: var(--wordcloud-modal-text-color);
+  line-height: 1.4;
+  max-height: 70px; /* Altura máxima para la descripción */
+  overflow-y: auto; /* Scroll si la descripción es más larga */
+  white-space: normal; /* Asegurar el ajuste de línea */
+}
+
+.echarts-tooltip-card p.tooltip-description.placeholder {
+  color: var(--wordcloud-placeholder-text-color);
+  font-style: italic;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .wordcloud-page-container h1.page-title {
+    font-size: 2rem;
+  }
+  .chart-wrapper {
+    height: 450px;
+    padding: 20px;
+  }
+  .modal-content {
+    margin: 8vh auto; /* Menos margen en pantallas medianas */
+    padding: 20px 25px 25px 25px;
+    font-size: 0.95rem; /* Ajustar tamaño base si es necesario */
+  }
+  .modal-content h3 {
+    font-size: 1.4em;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+  a.modal-tag-link {
+    padding: 9px 18px;
+    font-size: 0.85em;
+  }
+}
+@media (max-width: 480px) {
+  .wordcloud-page-container h1.page-title {
+    font-size: 1.7rem;
+  }
+  .chart-wrapper {
+    height: 380px;
+    padding: 15px;
+  }
+  .modal-content {
+    margin: 5vh auto;
+    width: 95%;
+    padding: 15px 20px 20px 20px;
+    font-size: 0.9rem;
+  }
+  .modal-content h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  .modal-content p {
+    margin-bottom: 10px;
+  }
+  .modal-tag-link-container {
+    margin-top: 20px;
+    padding-top: 12px;
+  }
+  a.modal-tag-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
