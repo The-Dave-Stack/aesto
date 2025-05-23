@@ -1,0 +1,220 @@
+{{!< default}}
+
+<div class='it-page'>
+    <div class='it-container'>
+        {{#post}}
+        <header class="it-page-head">
+            <h1 class="it-title">{{title}}</h1>
+        </header>
+    </div>
+
+    <div class='it-container'>
+        <section class='post-full-content'>
+            <!--div class='wordcloud-page-container gh-content gh-canvas'-->
+                <div class='chart-wrapper'>
+                    <div id='wordCloudContainer'>
+                        <p class='loading-message'>{{t "Loading tags cloud..."}}</p>
+                    </div>
+                </div>
+            <!--/div-->
+        </section>
+    </div>
+    {{/post}}
+  </div>
+</div>
+<div id="customModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h3>{{t "Tag Details"}}</h3>
+        <p><strong>{{t "Tag:"}}</strong> <span id="modalWord"></span></p>
+        <p><strong>{{t "Number of Articles:"}}</strong> <span id="modalValue"></span></p>
+        <p class="modal-tag-link-container">
+            <a href="#" id="modalTagLink" class="modal-tag-link" target="_blank" rel="noopener noreferrer">{{t "View articles with this tag"}}</a>
+        </p>
+    </div>
+</div>
+<script>
+    const i18n = {
+        articleSingular: "{{t "article.singular"}}",
+        articlePlural: "{{t "article.plural"}}",
+        noDescription: "{{t "No description."}}",
+        articlesLabel: "{{t "Articles:"}}",
+        noTagsFound: "{{t "No tags to display in the cloud."}}",
+        errorChartContainer: "{{t "Error: Chart container not found."}}"
+    };
+
+    let disableWordCloudInterval = setInterval(() => wordCloud(), 1000);
+    let disableWordCloudIntervalCounter = 10;
+    function wordCloud() {
+        const chartDom = document.getElementById('wordCloudContainer');
+        if (chartDom && disableWordCloudIntervalCounter > 0) {
+            disableWordCloudIntervalCounter = -1;
+            clearInterval(disableWordCloudInterval);
+        } else {
+            console.error("No se pudo cargar la nube de etiquetas después de varios intentos.");
+            disableWordCloudIntervalCounter--;
+        }
+        const loadingMessage = document.querySelector('#wordCloudContainer .loading-message');
+
+        if (!chartDom) {
+            console.error("Elemento wordCloudContainer no encontrado.");
+            if(loadingMessage) loadingMessage.textContent = i18n.errorChartContainer;
+            return;
+        }
+
+        const rawTagsData = [
+            {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+                {{#foreach tags}}
+                    {
+                        name: decodeURIComponent("{{encode name}}"), // Usar encode para seguridad y decodeURIComponent en JS
+                        value: {{count.posts}},
+                        slug: decodeURIComponent("{{encode slug}}"),
+                        description: decodeURIComponent("{{description}}"),
+                    }{{^if @last}},{{/if}} // Añadir coma excepto para el último elemento
+                {{/foreach}}
+            {{/get}}
+        ];
+
+        // Filtrar etiquetas (opcional, igual que antes)
+        const wordCloudData = rawTagsData.filter(tag => tag.value > 0);
+
+        if (wordCloudData.length === 0) {
+            if (loadingMessage) {
+                loadingMessage.textContent = i18n.noTagsFound;
+            } else {
+                // Si el mensaje de carga no existiera por alguna razón
+                chartDom.innerHTML = `<p style='text-align:center; padding-top: 50px; color: #777;'>${i18n.noTagsFound}</p>`;
+            }
+            return;
+        }
+
+        // Si hay datos, ocultar el mensaje de carga
+        if (loadingMessage) {
+            loadingMessage.style.display = 'none';
+        }
+
+        const tagsChart = echarts.init(chartDom);
+        let option;
+
+        option = {
+            tooltip: {
+                show: true,
+                confine: true,
+                trigger: 'item',
+                backgroundColor: 'rgba(0,0,0,0)',
+                borderColor: 'rgba(0,0,0,0)',
+                borderWidth: 0,
+                padding: 0,
+                shadowBlur: 0,
+                shadowColor: 'rgba(0,0,0,0)',
+                extraCssText: 'box-shadow: none; pointer-events: auto;',
+                formatter: function (params) {
+                    const { name: tagName, value: articleCount, description } = params.data
+
+                    let articlesText = articleCount + (articleCount === 1 ? i18n.articleSingular : i18n.articlePlural);
+                    
+                    let descriptionHtml = '';
+                    if (description && description.trim() !== '') {
+                        descriptionHtml = `<p class="tooltip-description">${description}</p>`;
+                    } else {
+                        descriptionHtml = `<p class="tooltip-description placeholder">${i18n.noDescription}</p>`;
+                    }
+
+                    // HTML con clases, sin estilos inline
+                    return `
+                        <div class="echarts-tooltip-card">
+                            <h4 class="tooltip-tag-name">${tagName}</h4>
+                            <p class="tooltip-article-count">
+                                <strong>${i18n.articlesLabel}</strong> ${articlesText}
+                            </p>
+                            ${descriptionHtml}
+                        </div>
+                    `;
+                }
+            },
+            series: [{
+                type: 'wordCloud',
+                shape: 'circle',
+                keepAspect: false,
+                drawOutOfBound: false,
+                textStyle: {
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 'bold',
+                    color: function () {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 180 + 55),
+                            Math.round(Math.random() * 180 + 55),
+                            Math.round(Math.random() * 180 + 55)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    focus: 'self',
+                    textStyle: {
+                        color: '#1EDAB4',
+                        fontWeight: 'bolder'
+                    }
+                },
+                data: wordCloudData,
+                sizeRange: [24, 120],
+                rotationRange: [-45, 45],
+                rotationStep: 15,
+                gridSize: 8,
+                layoutAnimation: true
+            }]
+        };
+
+        if (option && typeof option === "object") {
+            tagsChart.setOption(option);
+        }
+
+        // Lógica del Modal
+        const modal = document.getElementById("customModal");
+        const modalWordSpan = document.getElementById("modalWord");
+        const modalValueSpan = document.getElementById("modalValue");
+        const modalTagLink = document.getElementById("modalTagLink");
+        const closeButton = document.querySelector(".close-button");
+
+        function showModal(name, value, slug) {
+            if (modalWordSpan) modalWordSpan.textContent = name;
+            if (modalValueSpan) modalValueSpan.textContent = value + (value === 1 ? i18n.articleSingular : i18n.articlePlural);
+
+            if (modalTagLink && slug) {
+                modalTagLink.href = `/tag/${slug}/`;
+                modalTagLink.style.display = 'inline-block';
+            } else if (modalTagLink) {
+                modalTagLink.style.display = 'none';
+            }
+
+            if (modal) modal.style.display = "block";
+        }
+
+        function closeModal() {
+            if (modal) modal.style.display = "none";
+        }
+
+        if (closeButton) {
+            closeButton.onclick = closeModal;
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Evento click en ECharts
+        tagsChart.on('click', function (params) {
+            if (params.data && params.data.name != null && params.data.value != null) {
+                showModal(params.data.name, params.data.value, params.data.slug);
+            }
+        });
+
+        // Redimensionar gráfico con la ventana
+        window.addEventListener('resize', function () {
+            if (tagsChart) {
+                tagsChart.resize();
+            }
+        });
+    }
+</script>

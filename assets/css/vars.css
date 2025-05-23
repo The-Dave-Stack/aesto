@@ -14,14 +14,13 @@
   --color-bg-white: #ffffff; /* Blanco puro */
 
   /* ✍️ Colores de texto */
-  --text-color-primary: #093142;     /* Texto general */
-  --text-color-inverted: #ffffff;    /* Texto sobre fondo oscuro */
-  --text-color-link: #199A9A;        /* Links */
-  --text-color-link-hover: #1EDAB4;  /* Hover o focus en links */
+  --text-color-primary: #093142; /* Texto general */
+  --text-color-inverted: #ffffff; /* Texto sobre fondo oscuro */
+  --text-color-link: #199a9a; /* Links */
+  --text-color-link-hover: #1edab4; /* Hover o focus en links */
 
   /* 🔤 Tipografías */
-  --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  --font-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   --font-serif: Georgia, Times, serif;
   --font-mono: Menlo, Courier, monospace;
@@ -43,35 +42,68 @@
   --radius: 0.5rem;
 
   --container-width: 1200px;
+
+  /* Word Cloud */
+  --wordcloud-bg-color: #ffffff;
+  --wordcloud-text-color: #333;
+  --wordcloud-border-color: #dce3e5; /* Bordes claros de tu guía */
+  --wordcloud-title-color: #093142; /* Texto principal de tu guía */
+  --wordcloud-primary-accent: #199a9a; /* Primario de tu guía */
+  --wordcloud-secondary-text-color: #555;
+  --wordcloud-placeholder-text-color: #777;
+  --wordcloud-chart-wrapper-bg: #ffffff;
+  --wordcloud-modal-content-bg: #ffffff;
+  --wordcloud-modal-text-color: #333;
+  --wordcloud-modal-title-color: #093142;
+  --wordcloud-modal-border-color: #dce3e5;
+  --wordcloud-tooltip-separator-color: #f0f0f0;
+  --wordcloud-box-shadow-color: rgba(0, 0, 0, 0.12);
+  --wordcloud-page-bg: #f0f2f5; /* Fondo claro de página, si es necesario */
 }
 
 /* 🌙 Modo oscuro */
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   --color-base: #f4f7f8; /* Texto claro principal */
   --color-bg: #091e42; /* Fondo general oscuro (Azul Nocturno) */
   --color-bg-white: #093142; /* Alternativa más clara para secciones */
   --color-border: #1d2b38; /* Bordes sutiles en tonos oscuros */
 
-  --text-color-primary: #F4F7F8;
+  --text-color-primary: #f4f7f8;
   --text-color-inverted: #093142;
-  --text-color-link: #1EDAB4;
-  --text-color-link-hover: #199A9A;
+  --text-color-link: #1edab4;
+  --text-color-link-hover: #199a9a;
+
+  --wordcloud-bg-color: #091e42; /* Azul Nocturno - Fondo oscuro de tu guía */
+  --wordcloud-text-color: #f4f7f8; /* Gris Claro Niebla - Texto oscuro de tu guía */
+  --wordcloud-border-color: #1d2b38; /* Gris Azul Oscuro - Bordes oscuros de tu guía */
+  --wordcloud-title-color: #f4f7f8;
+  --wordcloud-primary-accent: #1edab4; /* Verde Menta como acento en oscuro? O mantener Teal */
+  --wordcloud-secondary-text-color: #a9c2d0; /* Un gris más claro para texto secundario */
+  --wordcloud-placeholder-text-color: #8a9bab;
+  --wordcloud-chart-wrapper-bg: #093142; /* Azul Petróleo Profundo - Fondo alternativo */
+  --wordcloud-modal-content-bg: #093142; /* Fondo alternativo para modal */
+  --wordcloud-modal-text-color: #f4f7f8;
+  --wordcloud-modal-title-color: #f4f7f8;
+  --wordcloud-modal-border-color: #1d2b38;
+  --wordcloud-tooltip-separator-color: #1d2b38; /* Un separador más oscuro */
+  --wordcloud-box-shadow-color: rgba(0, 0, 0, 0.3); /* Sombra un poco más visible en oscuro */
+  --wordcloud-page-bg: #061429; /* Un fondo de página aún más oscuro */
 }
 
 /* ✨ Estilos condicionales en modo oscuro */
-html[data-theme="dark"] .it-post-card-by a,
-html[data-theme="dark"] .it-post-card-tags a {
+html[data-theme='dark'] .it-post-card-by a,
+html[data-theme='dark'] .it-post-card-tags a {
   color: rgba(244, 247, 248, 0.7); /* Texto gris claro para metadata */
 }
 
 /* 💡 Hover en ambos modos */
 html .it-post-card-by a:hover,
 html .it-post-card-tags a:hover {
-  color: #1EDAB4;
+  color: #1edab4;
 }
 
 /* En modo oscuro, adaptar el color para contraste */
-html[data-theme="dark"] .it-foot-social a svg {
+html[data-theme='dark'] .it-foot-social a svg {
   fill: var(--text-color-primary); /* #F4F7F8 o similar */
 }
 

@@ -89,5 +89,17 @@
 	"Spanish": "Spanish",
 	"Chinese": "Chinese",
 	"No posts found with tag slug: '{tagslug}'.": "No posts found with tag slug: '{tagslug}'.",
-  "This page has no internal tag to filter posts.": "This page has no internal tag to filter posts."
+  "This page has no internal tag to filter posts.": "This page has no internal tag to filter posts.",
+	"Loading tags cloud...": "Loading tags cloud...",
+  "Click on a tag to see more details. Larger tags represent the most frequent topics on the blog.": "Click on a tag to see more details. Larger tags represent the most frequent topics on the blog.",
+  "Tag Details": "Tag Details",
+  "Tag:": "Tag:",
+  "Number of Articles:": "Number of Articles:",
+  "No tags to display in the cloud.": "No tags to display in the cloud.",
+  "Error: Chart container not found.": "Error: Chart container not found.",
+  "article.singular": " article",
+  "article.plural": " articles",
+  "No description.": "No description.",
+  "Articles:": "Articles:",
+	"View articles with this tag": "View articles with this tag"
 }
