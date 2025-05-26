@@ -35,6 +35,8 @@
     "magazine"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.21",
     "autoprefixer": "10.4.13",
     "bcrypt": "^6.0.0",
     "beeper": "2.1.0",
