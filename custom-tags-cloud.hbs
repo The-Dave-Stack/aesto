@@ -63,7 +63,7 @@
         }
 
         const rawTagsData = [
-            {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+            {{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
                 {{#foreach tags}}
                     {
                         name: decodeURIComponent("{{encode name}}"), // Usar encode para seguridad y decodeURIComponent en JS

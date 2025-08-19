@@ -25,7 +25,7 @@
             </div>
             <div class="it-foot-tag">
                 <h4>{{t "Tags"}}</h4>
-                {{#get 'tags' limit='all' include='count.posts' order='count.posts desc'}}
+                {{#get 'tags' limit='100' include='count.posts' order='count.posts desc'}}
                     {{#foreach tags}}
         				<a href="{{url}}" title="{{title}}">{{name}}</a>
         			{{/foreach}}
@@ -53,10 +53,10 @@
             </div>
             <div class="it-foot-social">
                 {{#if @site.facebook}}
-                <a href="{{facebook_url @site.facebook}}" title="{{t "Facebook"}}" target="_blank" rel="noopener" aria-label="{{t "Facebook"}}">{{> "icons/facebook"}}</a>
+                <a href="{{social_url type='facebook'}}" title="{{t "Facebook"}}" target="_blank" rel="noopener" aria-label="{{t "Facebook"}}">{{> "icons/facebook"}}</a>
                 {{/if}}
                 {{#if @site.twitter}}
-                <a href="{{twitter_url @site.twitter}}" title="{{t "Twitter"}}" target="_blank" rel="noopener" aria-label="{{t "Twitter"}}">{{> "icons/twitter"}}</a>
+                <a href="{{social_url type='twitter'}}" title="{{t "Twitter"}}" target="_blank" rel="noopener" aria-label="{{t "Twitter"}}">{{> "icons/twitter"}}</a>
                 {{/if}}
                 <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="{{t "RSS"}}" target="_blank" rel="noopener" aria-label="{{t "RSS"}}">{{> "icons/rss"}}</a>
             </div>

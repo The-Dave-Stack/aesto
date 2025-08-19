@@ -4,7 +4,7 @@
   "demo": "https://aesto.visioun.com",
   "version": "5.6.0",
   "engines": {
-    "ghost": ">=5.0.0"
+    "ghost": ">=6.0.0"
   },
   "scripts": {
     "dev": "gulp",
@@ -40,7 +40,7 @@
     "beeper": "2.1.0",
     "commit-and-tag-version": "^12.5.1",
     "cssnano": "5.1.14",
-    "gscan": "^4.37.5",
+    "gscan": "^5.1.0",
     "gulp": "4.0.2",
     "gulp-concat": "2.6.1",
     "gulp-livereload": "4.0.2",
@@ -128,10 +128,35 @@
         "default": false,
         "description": "Enable or disable the Chinese language in the language dropdown"
       },
+      "enable_open_source_projects": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the open source projects section on the portfolio page."
+      },
+      "open_source_project_section_title": {
+        "type": "text",
+        "default": "Open Source Projects",
+        "description": "Title for the open source projects section on the portfolio page."
+      },
       "open_source_projects_limit": {
         "type": "text",
         "default": "7",
         "description": "Number of open source projects to display on the portfolio page."
+      },
+      "enable_big_projects": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable or disable the big projects section on the portfolio page."
+      },
+      "big_project_section_title": {
+        "type": "text",
+        "default": "Big Projects",
+        "description": "Title for the big projects section on the portfolio page."
+      },
+      "big_project_section_subtitle": {
+        "type": "text",
+        "default": "Some startups and companies that I helped to create their tech.",
+        "description": "Subtitle for the big projects section on the portfolio page."
       },
       "big_projects_limit": {
         "type": "text",

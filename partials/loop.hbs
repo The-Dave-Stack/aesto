@@ -2,6 +2,7 @@
 Re-usable card for linking to posts
 --}}
 {{#foreach posts}}
+{{^has tag="#portfolio-open-source-project,#portfolio-big-project"}}
 <article class="it-card {{post_class}} {{#if @first}}first it-grid-c3{{/if}}">
     <a class="it-card-link" href="{{url}}" title="{{title}}">
             {{#if feature_image}}
@@ -62,4 +63,5 @@ Re-usable card for linking to posts
             </a>
         </div>
 </article>
+{{/has}}
 {{/foreach}}

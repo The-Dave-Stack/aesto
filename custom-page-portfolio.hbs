@@ -20,8 +20,9 @@
     {{/if}}
 
 <div class="it-container">
+    {{#if @custom.enable_open_source_projects}}
     <section class="portfolio-section">
-        <h2 class="portfolio-section-title">Open Source Projects</h2>
+        <h2 class="portfolio-section-title">{{@custom.open_source_project_section_title}}</h2>
         <div class="opensource-grid">
             {{#get "posts" filter="tags:[hash-portfolio-open-source-project]" include="tags" limit=@custom.open_source_projects_limit}}
                 {{#foreach posts}}
@@ -37,10 +38,12 @@
             <a href="/tag/portfolio-open-source-project/" class="portfolio-button">More Projects</a>
         </div>
     </section>
+    {{/if}}
 
+    {{#if @custom.enable_big_projects}}
     <section class="portfolio-section">
-        <h2 class="portfolio-section-title">Big Projects</h2>
-        <p class="portfolio-section-subtitle">Some startups and companies that I helped to create their tech.</p>
+        <h2 class="portfolio-section-title">{{@custom.big_project_section_title}}</h2>
+        <p class="portfolio-section-subtitle">{{@custom.big_project_section_subtitle}}</p>
         <div class="big-projects-grid">
             {{#get "posts" filter="tags:[hash-portfolio-big-project]" include="tags" limit=@custom.big_projects_limit}}
                 {{#foreach posts}}
@@ -56,6 +59,7 @@
             {{/get}}
         </div>
     </section>
+    {{/if}}
 
     <section class="post-full-content">
         <div class="gh-content gh-canvas">

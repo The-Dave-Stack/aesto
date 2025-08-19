@@ -26,7 +26,7 @@
 		
 		<div class="it-container">
 			<div class="it-authors it-grid-c3">
-				{{#get "authors" limit="all" include="count.posts" order="count.posts desc"}}
+				{{#get "authors" limit="100" include="count.posts" order="count.posts desc"}}
 					{{#foreach authors}}
 				  	<a class="it-authors-item" title="{{name}}" href='{{ url }}'>
 				    	<figure class="it-avatar-wrapper">

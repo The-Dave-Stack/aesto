@@ -26,7 +26,7 @@
 		
 	<div class="it-container">
 	    <div class="it-tags it-grid-c3">
-	    	{{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+	    	{{#get "tags" limit="100" include="count.posts" order="count.posts desc"}}
 		        {{#foreach tags}}
 		            <a class="tag-card" href="{{url}}" style="--accent-color: {{accent_color}};">
                     {{#if feature_image}}
