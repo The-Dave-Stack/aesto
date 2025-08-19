@@ -17,6 +17,7 @@ production stylesheet in assets/built/screen.css using: gulp dev
 @import 'components/search.css';
 @import 'components/card.css';
 @import 'components/zoom.css';
+@import 'components/portfolio.css';
 
 /* Ghost components */
 @import 'layouts/header.css';

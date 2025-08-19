@@ -1,0 +1,66 @@
+{{!< default}}
+
+{{#post}}
+    {{#if feature_image}}
+        <div class="portfolio-hero" style="background-image: url({{feature_image}})">
+            <div class="portfolio-hero-overlay">
+                <div class="it-container">
+                    <h1 class="portfolio-hero-title">{{title}}</h1>
+                    <p class="portfolio-hero-subtitle">{{excerpt}}</p>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="portfolio-hero">
+            <div class="it-container">
+                <h1 class="portfolio-hero-title">{{title}}</h1>
+                <p class="portfolio-hero-subtitle">{{excerpt}}</p>
+            </div>
+        </div>
+    {{/if}}
+
+<div class="it-container">
+    <section class="portfolio-section">
+        <h2 class="portfolio-section-title">Open Source Projects</h2>
+        <div class="opensource-grid">
+            {{#get "posts" filter="tags:[hash-portfolio-open-source-project]" include="tags" limit=@custom.open_source_projects_limit}}
+                {{#foreach posts}}
+                    <div class="opensource-card">
+                        <h3 class="opensource-card-title">{{title}}</h3>
+                        <p class="opensource-card-description">{{excerpt}}</p>
+                        <a href="{{url}}" class="project-card-link">View Project &rarr;</a>
+                    </div>
+                {{/foreach}}
+            {{/get}}
+        </div>
+        <div style="text-align: center;">
+            <a href="/tag/portfolio-open-source-project/" class="portfolio-button">More Projects</a>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <h2 class="portfolio-section-title">Big Projects</h2>
+        <p class="portfolio-section-subtitle">Some startups and companies that I helped to create their tech.</p>
+        <div class="big-projects-grid">
+            {{#get "posts" filter="tags:[hash-portfolio-big-project]" include="tags" limit=@custom.big_projects_limit}}
+                {{#foreach posts}}
+                    <div class="big-project-card">
+                        {{#if feature_image}}
+                            <img class="big-project-card-logo" src="{{feature_image}}" alt="{{title}}">
+                        {{/if}}
+                        <h3 class="big-project-card-title">{{title}}</h3>
+                        <p class="big-project-card-description">{{excerpt}}</p>
+                        <a href="{{url}}" class="portfolio-button">Visit Website</a>
+                    </div>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </section>
+
+    <section class="post-full-content">
+        <div class="gh-content gh-canvas">
+            {{content}}
+        </div>
+    </section>
+</div>
+{{/post}}

@@ -1,0 +1,127 @@
+/* Portfolio Page Styles */
+
+.portfolio-hero {
+    text-align: center;
+    padding: 80px 0;
+    background-color: var(--color-bg);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.portfolio-hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 80px 0;
+}
+
+.portfolio-hero-title {
+    font-size: 4.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.portfolio-hero-subtitle {
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.portfolio-section {
+    padding: 80px 0;
+}
+
+.portfolio-section-title {
+    text-align: center;
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.portfolio-section-subtitle {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 60px;
+}
+
+/* Open Source Projects */
+.opensource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.opensource-card {
+    background-color: var(--color-bg-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.opensource-card-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.opensource-card-description {
+    color: var(--color-text-secondary);
+    flex-grow: 1;
+    margin-bottom: 25px;
+}
+
+.opensource-card-stats {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-secondary);
+}
+
+.opensource-card-stats > div {
+    margin-right: 20px;
+}
+
+/* Big Projects */
+.big-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.big-project-card {
+    background-color: var(--color-bg-white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.big-project-card-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.big-project-card-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.big-project-card-description {
+    color: var(--color-text-secondary);
+    margin-bottom: 30px;
+}
+
+.portfolio-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--color-primary);
+    color: var(--color-bg-white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 40px;
+    text-align: center;
+}

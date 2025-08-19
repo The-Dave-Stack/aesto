@@ -2,7 +2,7 @@
   "name": "aesto",
   "description": "Minimalist blog & magazine theme for ghost",
   "demo": "https://aesto.visioun.com",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
@@ -103,7 +103,7 @@
       },
       "featured_tag_slugs": {
         "type": "text",
-        "default": "ai,software-development,ai-tools,ai-monthly-roundup,devops",
+        "default": "ai,software-development,ai-tools,devops",
         "description": "Add the tag slugs that you want to showcase on homepage comma seperated eg. tag1,tag2,tag3",
         "group": "homepage"
       },
@@ -127,6 +127,16 @@
         "type": "boolean",
         "default": false,
         "description": "Enable or disable the Chinese language in the language dropdown"
+      },
+      "open_source_projects_limit": {
+        "type": "text",
+        "default": "7",
+        "description": "Number of open source projects to display on the portfolio page."
+      },
+      "big_projects_limit": {
+        "type": "text",
+        "default": "20",
+        "description": "Number of big projects to display on the portfolio page."
       }
     }
   },
